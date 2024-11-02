@@ -21,7 +21,7 @@ class Coleccion():
 
     def dar_medios(self):
         return [medio.name for medio in Medio]
-
+#Comentario
     def editar_album(self, album_id, titulo, anio, descripcion, medio):
         busqueda = session.query(Album).filter(Album.titulo == titulo, Album.id != album_id).all()
         if len(busqueda) == 0:

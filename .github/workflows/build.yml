@@ -28,7 +28,6 @@ jobs:
         id: pruebas
         run: | 
           python -m coverage run -m unittest discover tests || true
-          python -m coverage report
           python -m coverage xml -i
 
       - name: Verificar archivos generados

@@ -35,6 +35,19 @@ class Coleccion():
         else:
             return False
 
+    def duplicado(self, album_id, titulo, anio, descripcion, medio):
+        busqueda = session.query(Album).filter(Album.titulo == titulo, Album.id != album_id).all()
+        if len(busqueda) == 0:
+            album = session.query(Album).filter(Album.id == album_id).first()
+            album.titulo = titulo
+            album.ano = anio
+            album.descripcion = descripcion
+            album.medio = medio
+            session.commit()
+            return True
+        else:
+            return False
+
     def eliminar_album(self, album_id):
         try:
             album = session.query(Album).filter(Album.id == album_id).first()

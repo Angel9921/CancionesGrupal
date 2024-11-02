@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Desactivar clones superficiales para relevancia en el análisis
+          fetch-depth: 0  # Desactivar clones superficiales para relevancia en el análisis xd
 
       - name: Setup Python
         uses: actions/setup-python@v2

@@ -21,7 +21,7 @@ class Coleccion():
 
     def dar_medios(self):
         return [medio.name for medio in Medio]
-#Comentario
+
     def editar_album(self, album_id, titulo, anio, descripcion, medio):
         busqueda = session.query(Album).filter(Album.titulo == titulo, Album.id != album_id).all()
         if len(busqueda) == 0:
@@ -34,38 +34,6 @@ class Coleccion():
             return True
         else:
             return False
-
-    def duplicado(self, album_id, titulo, anio, descripcion, medio):
-        busqueda = session.query(Album).filter(Album.titulo == titulo, Album.id != album_id).all()
-        if len(busqueda) == 0:
-            album = session.query(Album).filter(Album.id == album_id).first()
-            album.titulo = titulo
-            album.ano = anio
-            album.descripcion = descripcion
-            album.medio = medio
-            session.commit()
-            return True
-        else:
-            return False
-
-    def copia(self, titulo, anio, descripcion, medio):
-        busqueda = session.query(Album).filter(Album.titulo == titulo).all()
-        if len(busqueda) == 0:
-            album = Album(titulo=titulo, ano=anio, descripcion=descripcion, medio=medio)
-            session.add(album)
-            session.commit()
-            return True
-        else:
-            return False
-
-    def copy(self, album_id):
-        canciones = session.query(Cancion).filter(Cancion.albumes.any(Album.id.in_([album_id]))).all()
-        interpretes = []
-        for cancion in canciones:
-            for interprete in cancion.interpretes:
-                interpretes.append(interprete.nombre)
-        return interpretes
-
 
     def eliminar_album(self, album_id):
         try:
